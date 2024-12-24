@@ -1,0 +1,22 @@
+<include>
+	<extension name="park">
+		<condition field="destination_number" expression="^911111$">
+                 	<action application="log" data="we are in task-2 dialplan*********"/>
+			<action application="answer"/>
+			<action application="playback" data="/usr/local/freeswitch/sounds/en/us/callie/ivr/16000/ivr-welcome_to_freeswitch.wav"/>
+			<action application="fifo" data="911111@${domain_name} in"/>
+                </condition>
+	</extension>
+
+	<extension name="unpark">
+      		<condition field="destination_number" expression="^912222$">
+			<action application="answer"/>
+			<action application="playback" data="/usr/local/freeswitch/sounds/en/us/callie/ivr/16000/ivr-welcome_to_freeswitch.wav"/>
+			<action application="fifo" data="911111@${domain_name} out nowait"/>
+			<action application="log" data="******Not matched destination number******"/>
+                        <anti-action application="reject" data="404 Not Found"/>
+
+		</condition>
+        </extension>
+
+</include>

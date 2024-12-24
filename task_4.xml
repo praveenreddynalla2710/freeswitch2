@@ -1,0 +1,16 @@
+<extension name="checkconfiguration">
+	<condition field="destination_number" expression="^91002$">
+		<action application="log" data="****** we are at task-4 dialplan ********"/>
+        <action application="set" data="sip_h_Configuration_Ecosmob=FreeSWITCH_Training"/>
+             <action application="bridge" data="sofia/external/self/91002@$${domain}"/>
+        
+        </condition>
+</extension>
+
+
+<extension name="join_conference">
+   <condition field="destination_number" expression="91002">
+	<!--action application="answer"/-->
+      	<action application="conference" data="bridge:91002@172.16.16.122@default:user/91002@172.16.16.122"/>
+   </condition>
+</extension>

@@ -1,0 +1,19 @@
+<include>
+                <extension name="6778">
+                        <condition field="destination_number" expression="^6778$">
+                                <action application="log" data="we are in task-1 dialplan*********"/>
+				<action application="answer"/>
+				<action application="voicemail" data="default ${domain_name} ${destination_number}"/>
+                                <action application="hangup" />
+                        </condition>
+		</extension>
+
+                <extension name="6779">
+                        <condition field="destination_number" expression="^6779$">
+                                <action application="log" data="we are in task-1 dialplan*********"/>
+                                <action application="answer"/>
+				<action application="echo"/>
+                                <action application="hangup" />
+                        </condition>
+		</extension>
+</include>

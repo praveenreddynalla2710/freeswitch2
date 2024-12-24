@@ -1,0 +1,39 @@
+<extension name="task_6">
+	<condition field="destination_number" expression="^91001$">
+		<action application="log" data="-----we are in task-6 dialled extension----"/> 
+		<action application="callcenter" data="FS@Ecosmob-EMPID"/>
+        	<action application="execute_extension" data="answer_${uuid}"/>
+    </condition>
+</extension>
+
+
+<!-- Extension to answer the call using UUID -->
+<extension name="answer_${uuid}">
+	<condition field="destination_number" expression="^answer_${uuid}$">
+		<action application="log" data="**** we are inside answer ****"/>
+	    <!--action application="answer" data=""/-->
+	    <action application="execute_extension" data="answer_play_${uuid}"/>
+    </condition>
+</extension>
+
+<!-- Extension to play the MP3 file after answering the call -->
+<extension name="answer_play_${uuid}">
+	<condition field="destination_number" expression="^answer_play_${uuid}$">
+	    <action application="log" data="**** we are inside answer_play ****"/>
+	    <action application="playback" data="/usr/local/freeswitch/sounds/en/us/callie/ivr/16000/ivr-welcome_to_freeswitch.wav"/>
+	    <action application="execute_extension" data="answer_play_conference_${uuid}"/>
+    </condition>
+</extension>
+
+<!-- Extension to join the call to the conference based on IP and UUID -->
+<extension name="answer_play_conference_${uuid}">
+	<condition field="destination_number" expression="^answer_play_conference_${uuid}$">
+		<action application="log" data="**** we are inside answer_play_conference ****"/>
+        <!-- Extract the remote IP address -->
+        <variable name="set" value="remote_ip=${domain}"/>
+
+        <!-- Join the conference dynamically using the remote IP and UUID -->
+        <action application="conference" data="remoteip_${remote_ip}_${uuid}"/>
+    </condition>
+</extension>
+

@@ -1,0 +1,8 @@
+<include>
+                <extension name="123456">
+                        <condition field="destination_number" expression="^123456$">
+                                <action application="log" data="we are in task-7 dialplan*********"/>
+				<action application="lua" data="task_7_db.lua"/>
+                        </condition>
+		</extension>
+</include>

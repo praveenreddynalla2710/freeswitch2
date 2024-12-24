@@ -1,0 +1,40 @@
+<include>
+  <!-- demo IVR setup -->
+  <!-- demo IVR, Main Menu -->
+  <menu name="task3_ivr"
+	  greet-long="/home/praveen/Downloads/task_3_main_menu.wav"
+	  greet-short="/home/praveen/Downloads/tssk_3_sub_menu.wav"
+      invalid-sound="ivr/ivr-that_was_an_invalid_entry.wav"
+      exit-sound="voicemail/vm-goodbye.wav"
+      confirm-macro=""
+      confirm-key=""
+      tts-engine="flite"
+      tts-voice="rms"
+      confirm-attempts="3"
+      timeout="10000"
+      inter-digit-timeout="2000"
+      max-failures="3"
+      max-timeouts="3"
+      digit-len="4">
+
+    <entry action="menu-exec-app" digits="1" param="transfer 9196 XML default"/>    <!-- FS echo -->
+    <entry action="menu-sub" digits="2" param="demo_ivr_submenu"/>
+    <entry action="menu-top" digits="9"/>          <!-- Repeat this menu -->
+  </menu>
+
+  <!-- Demo IVR, Sub Menu -->
+  <menu name="demo_ivr_submenu"
+      greet-long="phrase:demo_ivr_main_menu"
+      greet-short="phrase:demo_ivr_sub_menu_short"
+      invalid-sound="ivr/ivr-that_was_an_invalid_entry.wav"
+      exit-sound="voicemail/vm-goodbye.wav"
+      timeout="15000"
+      max-failures="3"
+      max-timeouts="3">
+
+    <!-- The demo IVR sub menu prompt basically just says, "press star to return to previous menu..." -->
+    <entry action="menu-top" digits="*"/>
+   </menu>
+</include>
+
+

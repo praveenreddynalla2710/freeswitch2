@@ -1,0 +1,13 @@
+<include>
+	<extension name="task_5">
+
+		<condition field="destination_number" expression="^9512452$">
+			<action application="log" data="***** we are in task-5 dialplan ******"/>
+			<action application="lua" data="task_5_call_center.lua"/>
+			<!--action application="callcenter" data="FS@Ecosmob-EMPID"/-->
+			<action application="log" data="**** hang up in lua *****"/>
+			<action appliaction="hangup"/>
+		</condition>
+
+	</extension>
+</include>
