@@ -1,0 +1,13 @@
+<include>
+  <gateway name="self">
+  
+  <param name="username" value="91002"/>
+   <param name="realm" value="172.16.16.122"/>
+  <param name="password" value="$${default_password}"/>
+  <param name="extension" value="auto_to_user"/> 
+  <param name="register-proxy" value="$${domain}:5060"/>
+    <param name="register" value="true"/>
+  </gateway>
+
+
+</include>
